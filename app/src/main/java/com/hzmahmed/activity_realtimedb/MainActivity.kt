@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val database = Firebase.database
         val myRef = database.getReference()
+
         binding.btnSave.setOnClickListener {
             val name = binding.PersonName.text.toString()
             val id = binding.PersonId.text.toString()
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             myRef.child("person").child("$count").setValue(person)
             count++
-            Toast.makeText(applicationContext,"Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,"Success Add", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnGetData.setOnClickListener {
@@ -43,10 +44,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val value = snapshot.getValue()
                     binding.txtData.text = value.toString()
-                    Toast.makeText(applicationContext,"Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Success Get Data", Toast.LENGTH_SHORT).show()
                 }
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(applicationContext,"Fail", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Fail Get Data", Toast.LENGTH_SHORT).show()
                 }
             })
         }
